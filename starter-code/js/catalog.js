@@ -11,10 +11,12 @@ function populateForm() {
 
   //TODO: Add an <option> tag inside the form's select for each product
   var selectElement = document.getElementById('items');
-  for (var i in Product.allProducts) {
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    var option = document.createElement('option');
+    option.textContent = Product.allProducts[i].name;
 
+    selectElement.appendChild(option);
   }
-
 }
 
 // When someone submits the form, we need to add the selected item to the cart
@@ -23,29 +25,57 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
+  event.preventDefault();
 
   // Do all the things ...
-  addSelectedItemToCart();
+  addSelectedItemToCart(event);
   cart.saveToLocalStorage();
   updateCounter();
-  updateCartPreview();
+  updateCartPreview(event);
 
 }
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
+  var itemSelected = event.target.items.value;
   // TODO: get the quantity
+  var itemQuantity = event.target.quantity.value;
   // TODO: using those, add one item to the Cart
+  Cart.addItem(itemSelected, itemQuantity);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+  var cartCounter = document.getElementById('itemCount');
+  cartCounter.textContent = `${Cart.items.length}`;
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview() {
+function updateCartPreview(event) {
   // TODO: Get the item and quantity from the form
+  var itemSelected = event.target.items.value;
+  var itemQuantity = event.target.quantity.value;
+
   // TODO: Add a new element to the cartContents div with that information
+  var cartContents = document.getElementById('cart');
+  var newRow = document.createElement('tr');
+  newRow.id = itemSelected;
+  cartContents.appendChild(newRow);
+
+  var addToRow = document.getElementById(itemSelected);
+  var removeButton = document.createElement('td');
+  removeButton.textContent = 'X';
+  addToRow.appendChild('removeButton');
+
+  var quantity = document.createElement('td');
+  quantity.textContent = itemQuantity;
+  addToRow.appendChild(quantity);
+
+  var item = document.createElement('td');
+  item.textContent = itemSelected;
+  addToRow.appendChild(item);
+
 }
 
 // Set up the "submit" event listener on the form.

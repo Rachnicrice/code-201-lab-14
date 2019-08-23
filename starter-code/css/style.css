@@ -1,1 +1,71 @@
 /* TODO: Make it awesome */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  max-width: 960px;
+}
+
+body > header > h1 {
+  background: grey;
+  color: aliceblue;
+  font-size: 2.5em;
+  line-height: 100px;
+  text-align: center;
+}
+
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
+ul {
+  background: #999;
+}
+
+ul > li {
+  display: inline-block;
+  margin: 2px 0px 2px 20px;
+
+}
+
+ul > li:first-child {
+  margin: 2px 0px 2px 430px;
+}
+
+div > header > h1 {
+  line-height: 2em;
+  text-align: center;
+  padding: 1em;
+}
+
+table {
+  margin: 50px;
+}
+
+table > thead > tr > th {
+  padding: 5px 40px 5px 0px;
+  text-align: center;
+}
+
+footer {
+  background: grey;
+  color: aliceblue;
+  font-size: 1em;
+  line-height: 80px;
+  text-align: center;
+}
+
+form {
+  margin: 50px 15px 50px 15px;
+}
+
+fieldset > legend {
+  padding: 0px 0px 40px 0px;
+}
